@@ -3,4 +3,38 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
          version="5.0">
+    <display-name>websecurity1</display-name>
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+    <servlet>
+        <description></description>
+        <display-name>GreetingServlet</display-name>
+        <servlet-name>GreetingServlet</servlet-name>
+        <servlet-class>org.servlet.p2p_lottery.HelloServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GreetingServlet</servlet-name>
+        <url-pattern>/hello</url-pattern>
+    </servlet-mapping>
+    <filter>
+        <filter-name>SecurityFilter</filter-name>
+        <filter-class>org.servlet.p2p_lottery.filter.SecurityFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>SecurityFilter</filter-name>
+        <url-pattern>/hello</url-pattern>
+    </filter-mapping>
+    <filter>
+        <filter-name>BlacklistFilter</filter-name>
+        <filter-class>org.servlet.p2p_lottery.filter.BlacklistFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>BlacklistFilter</filter-name>
+        <url-pattern>/hello</url-pattern>
+    </filter-mapping>
+    <!-- Map roles to users or groups -->
+    <security-role>
+        <role-name>tomcat</role-name>
+    </security-role>
 </web-app>
